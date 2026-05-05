@@ -627,7 +627,7 @@
                 <button id="generarInfografiaBtn" style="background:linear-gradient(135deg,#1a3a52,#0f2438); color:#fff; border:none; padding:10px 22px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
                     🖼️ Generar Infografía
                 </button>
-                <button id="descargarInfografiaBtn" style="background:linear-gradient(135deg,#27ae60,#1e8449); color:#fff; border:none; padding:10px 22px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:none; align-items:center; gap:8px;">
+                <button id="descargarInfografiaBtn" style="background:linear-gradient(135deg,#27ae60,#1e8449); color:#fff; border:none; padding:10px 22px; border-radius:6px; font-size:14px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:8px;">
                     ⬇️ Descargar JPG
                 </button>
                 <span id="infografiaStatus" style="font-size:13px; color:#7f8c8d;"></span>
@@ -637,40 +637,8 @@
             </div>
         </section>
 
-        <!-- SECCIÓN 3: GRÁFICAS INTERACTIVAS -->
-        <section id="chartsSection">
-            <h2>📉 Gráficas Interactivas</h2>
-            <div class="chart-wrapper">
-                <div class="chart-container">
-                    <canvas id="trendChart"></canvas>
-                </div>
-                <div class="chart-container">
-                    <canvas id="categoryChart"></canvas>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 4: ANÁLISIS -->
-        <section id="analysisSection">
-            <h2>📝 Análisis Semanal</h2>
-            <div class="analysis-section" id="analysisContent">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Cargando análisis...</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 5: GALERÍA HISTÓRICA -->
-        <section id="gallerySection">
-            <h2>📚 Archivo Histórico de Infografías</h2>
-            <div class="gallery" id="gallery">
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Cargando galería...</p>
-                </div>
-            </div>
-        </section>
+        <!-- SECCIONES FUTURAS: Gráficas Interactivas, Análisis Semanal e Archivo Histórico -->
+        <!-- Estas secciones se implementarán en fases futuras del proyecto -->
     </main>
 
     <!-- ===== FOOTER ===== -->
@@ -994,6 +962,9 @@
                 else if (diff < 0) delitosDisminucion++;
                 else delitosConCambio++;
             }
+            
+            // Si no hay disminuciones, mostrar N/A
+            const delitosDisminucionText = delitosDisminucion > 0 ? delitosDisminucion : 'N/A';
 
             container.innerHTML = `
                 <div class="card">
@@ -1025,7 +996,7 @@
                             <div style="color: #7f8c8d; font-size: 11px;">Sin cambio</div>
                         </div>
                         <div style="text-align: center;">
-                            <div class="value" style="color: var(--color-secondary); font-size: 18px;">${delitosDisminucion}</div>
+                            <div class="value" style="color: var(--color-secondary); font-size: 18px;">${delitosDisminucionText}</div>
                             <div style="color: #7f8c8d; font-size: 11px;">Disminuyeron</div>
                         </div>
                     </div>
