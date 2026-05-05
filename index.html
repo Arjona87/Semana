@@ -811,8 +811,12 @@
                 // Acumular total de delitos
                 if (delitoName.toUpperCase().includes('TOTAL')) {
                     parsedData[region].totalDelitos = values[values.length - 1] || 0;
-                    if (values.length >= 2) {
-                        parsedData[region].variacion = ((values[values.length - 1] - values[values.length - 2]) / values[values.length - 2] * 100).toFixed(1);
+                    parsedData[region].totalDelitosAnterior = values[values.length - 2] || 0;
+                    if (values.length >= 2 && parsedData[region].totalDelitosAnterior > 0) {
+                        // SIEMPRE calcular el porcentaje, ignorar el del CSV
+                        const totalActual = values[values.length - 1] || 0;
+                        const totalAnterior = values[values.length - 2] || 0;
+                        parsedData[region].variacion = ((totalActual - totalAnterior) / totalAnterior * 100).toFixed(1);
                     }
                 }
             }
@@ -950,7 +954,12 @@
                     continue;
                 }
                 
-                totalDelitosAnterior += delitoData.previousValue || 0;
+                // Usar el total de delitos anterior guardado, no la suma parcial
+                if (totalDelitosAnterior === 0 && region.totalDelitosAnterior) {
+                    totalDelitosAnterior = region.totalDelitosAnterior;
+                } else {
+                    totalDelitosAnterior += delitoData.previousValue || 0;
+                }
                 
                 // Clasificar por categoría
                 let clasificado = false;
