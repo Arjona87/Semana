@@ -632,8 +632,8 @@
                 </button>
                 <span id="infografiaStatus" style="font-size:13px; color:#7f8c8d;"></span>
             </div>
-            <div id="infografiaPreview" style="display:none; text-align:center; background:#f5f7fa; border-radius:10px; padding:20px; border:1px solid #dde1e7;">
-                <canvas id="infografiaCanvas" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 20px rgba(0,0,0,0.15);"></canvas>
+            <div id="infografiaPreview" style="display:none; text-align:center; background:#f5f7fa; border-radius:10px; padding:0; border:1px solid #dde1e7; margin:0;">
+                <canvas id="infografiaCanvas" style="max-width:100%; height:auto; border-radius:6px; box-shadow:0 4px 20px rgba(0,0,0,0.15); display:block;"></canvas>
             </div>
         </section>
 
@@ -1272,7 +1272,7 @@
 
                     // Icono
                     const iconX = cx + cellW / 2;
-                    ctx.font = '26px Arial';
+                    ctx.font = '39px Arial';  // Aumentado 50% (26px * 1.5 = 39px)
                     ctx.textAlign = 'center';
                     ctx.textBaseline = 'middle';
                     ctx.fillText(d.icon, iconX, cy + 28);
@@ -1438,6 +1438,15 @@
                 'Fiscalía del ' + cfg.nombreFooter + '  |  ' + fechaHoy + '  |  Elaborado por: CGES/DGAPP/AA',
                 W / 2, y + FOOT_H / 2, '12px Arial', '#AABBCC'
             );
+            
+            y += FOOT_H;
+            
+            // ========== AJUSTAR ALTURA DINAMICA ==========
+            // Redimensionar el canvas a la altura real del contenido
+            const alturaReal = y;
+            if (canvas.height > alturaReal) {
+                canvas.height = alturaReal;
+            }
         }
 
         // ===== EVENT LISTENERS =====
