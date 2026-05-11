@@ -1105,7 +1105,7 @@
             const canvas = document.getElementById('infografiaCanvas');
 
             // Dimensiones (proporción 9:16 a alta resolución)
-            const W = 900, H = 2400;
+            const W = 900, H = 1900;
             canvas.width = W;
             canvas.height = H;
             const ctx = canvas.getContext('2d');
@@ -1440,13 +1440,6 @@
             );
             
             y += FOOT_H;
-            
-            // ========== AJUSTAR ALTURA DINAMICA ==========
-            // Redimensionar el canvas a la altura real del contenido
-            const alturaReal = y;
-            if (canvas.height > alturaReal) {
-                canvas.height = alturaReal;
-            }
         }
 
         // ===== EVENT LISTENERS =====
